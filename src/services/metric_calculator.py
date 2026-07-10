@@ -61,7 +61,7 @@ class MetricCalculator():
         return cm / ltc * 100
 
 
-    def calculate(self, product):
+    def calculate(self, product: ProductCalculationData):
 
         conversion = self.calculate_conversion(product)
 
