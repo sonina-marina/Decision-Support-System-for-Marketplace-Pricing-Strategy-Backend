@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: dss_database
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: dss_db
+    ports:
+      - 5432:5432
+    volumes:
+      - dss_database_volume:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d erp-db"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  dss_database_volume:
