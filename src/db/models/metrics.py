@@ -28,10 +28,6 @@ class Metrics(Base):
         nullable=False
     )
 
-    cac: Mapped[float] = mapped_column(
-        nullable=False
-    )
-
     required_cpa: Mapped[float] = mapped_column(
         nullable=False
     )
