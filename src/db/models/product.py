@@ -102,3 +102,13 @@ class Product(Base):
         onupdate=func.now(),
         nullable=False
     )
+
+    is_deleted: Mapped[bool] = mapped_column(
+      default=False  
+    )
+
+    metrics: Mapped[list['Metrics']] = relationship(
+        back_populates='product',
+        cascade='all, delete-orphan',
+        lazy='raise'
+    }

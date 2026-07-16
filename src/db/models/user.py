@@ -39,6 +39,10 @@ class User(Base):
         nullable=False
     )
 
+    is_deleted: Mapped[bool] = mapped_column(
+      default=False  
+    )
+
     stores: Mapped[list['Store']]= relationship(
         back_populates='user',
         cascade='all, delete-orphan',

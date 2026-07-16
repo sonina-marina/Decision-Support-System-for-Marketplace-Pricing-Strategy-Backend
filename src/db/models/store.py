@@ -38,6 +38,10 @@ class Store(Base):
         nullable=False
     )
 
+    is_deleted: Mapped[bool] = mapped_column(
+      default=False  
+    )
+
     products: Mapped[list['Product']]= relationship(
         back_populates='shop',
         cascade='all, delete-orphan',
