@@ -33,6 +33,21 @@ class ProductRepository(
         return self.exclude_deleted_from_list(list(result.scalars().all()))
 
 
+    async def get_product_by_item_number(
+        self,
+        item_number: int
+    ) -> Product | None:
+
+        stmt = (
+            select(Product)
+            .where(Product.item_number == item_number)
+        )
+
+        result = await self.session.execute(stmt)
+
+        return result.scalar_one_or_none()
+
+
     async def get_full_product_by_id(
         self,
         id
