@@ -3,7 +3,8 @@ from schemas.metric import ProductCalculationData, MetricsResult
 
 class MetricCalculator():
 
-    def calculate_conversion(self, product: ProductCalculationData) -> float:
+    @classmethod
+    def _calculate_conversion(cls, product: ProductCalculationData) -> float:
         if product.views <= 0:
             raise ValueError(
                 "Количество просмотров должно быть больше нуля."
@@ -11,15 +12,17 @@ class MetricCalculator():
         return product.target_actions / product.views
 
 
-    def calculate_cac(self, product: ProductCalculationData) -> float:
+    @classmethod
+    def _calculate_cac(cls, product: ProductCalculationData) -> float:
         if product.buyers <= 0:
             raise ValueError(
                 "Количество покупателей должно быть больше нуля."
             )
         return product.ad_costs / product.buyers
 
-
-    def calculate_required_cpa(self, product: ProductCalculationData) -> float:
+    
+    @classmethod
+    def _calculate_required_cpa(cls, product: ProductCalculationData) -> float:
         if product.target_actions <= 0:
             raise ValueError(
                 "Количество целевых действий должно быть больше нуля."
@@ -27,8 +30,9 @@ class MetricCalculator():
 
         return product.ad_costs / product.target_actions
 
-    
-    def calculate_ltc(self, product: ProductCalculationData) -> float:
+
+    @classmethod
+    def _calculate_ltc(cls, product: ProductCalculationData) -> float:
         return (product.cogs +
                product.price * product.commission / 100 +
                product.price * product.acquiring / 100 + 
@@ -41,11 +45,13 @@ class MetricCalculator():
                product.avg_packaging)
 
 
-    def calculate_cm(self, product: ProductCalculationData, ltc) -> float:
+    @classmethod
+    def _calculate_cm(cls, product: ProductCalculationData, ltc) -> float:
         return product.price - ltc
 
 
-    def calculate_ltv(self, product: ProductCalculationData, cm) -> float:
+    @classmethod
+    def _calculate_ltv(cls, product: ProductCalculationData, cm) -> float:
         if product.buyers <= 0:
             raise ValueError(
                 "Количество покупателей должно быть больше нуля."
@@ -53,7 +59,8 @@ class MetricCalculator():
         return cm * product.sales / product.buyers
 
 
-    def calculate_product_roi(self, cm, ltc) -> float:
+    @classmethod
+    def _calculate_product_roi(cls, cm, ltc) -> float:
         if ltc <= 0:
             raise ValueError(
                 "Затраты должны быть больше нуля."
@@ -61,21 +68,22 @@ class MetricCalculator():
         return cm / ltc * 100
 
 
-    def calculate(self, product: ProductCalculationData):
+    @classmethod
+    def calculate(cls, product: ProductCalculationData):
 
-        conversion = self.calculate_conversion(product)
+        conversion = cls._calculate_conversion(product)
 
-        cac = self.calculate_cac(product)
+        cac = cls._calculate_cac(product)
 
-        required_cpa = self.calculate_required_cpa(product)
+        required_cpa = cls._calculate_required_cpa(product)
 
-        ltc = self.calculate_ltc(product)
+        ltc = cls._calculate_ltc(product)
 
-        cm = self.calculate_cm(product, ltc=ltc)
+        cm = cls._calculate_cm(product, ltc=ltc)
 
-        ltv = self.calculate_ltv(product, cm=cm)
+        ltv = cls._calculate_ltv(product, cm=cm)
 
-        product_roi = self.calculate_product_roi(cm=cm, ltc=ltc)
+        product_roi = cls._calculate_product_roi(cm=cm, ltc=ltc)
 
         return MetricsResult(
             conversion=conversion,
