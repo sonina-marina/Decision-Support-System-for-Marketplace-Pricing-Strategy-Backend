@@ -28,18 +28,3 @@ class StoreRepository(
         result = await self.session.execute(stmt)
 
         return self.exclude_deleted_from_list(list(result.scalars().all()))
-
-
-    async def get_full_store_by_id(
-        self, 
-        id: int
-    ) -> Store | None:
-
-        store = await self.get_by_id(
-            id,
-            options=[
-                selectinload(Store.products)
-            ]
-        )
-
-        return self.exclude_deleted(store)
