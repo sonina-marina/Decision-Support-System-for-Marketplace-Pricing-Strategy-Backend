@@ -1,5 +1,6 @@
 from typing import TypeVar
 
+from pydantic import EmailStr
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.db.repositories.base import BaseRepository, ModelType
@@ -30,3 +31,18 @@ class UserRepository(
         result = await self.session.execute(stmt)
 
         return result.scalar_one()
+
+
+    async def get_user_by_email(
+        self,
+        email: EmailStr
+    ) -> User | None:
+
+        stmt = (
+            select(User)
+            .where(User.email == email)
+        )
+
+        result = await self.session.execute(stmt)
+
+        return result.scalar_one_or_none()
