@@ -96,7 +96,6 @@ class ProductList(ProductBaseModel):
 class ProductUpdate(ProductBaseModel):
     id: int
 
-    item_number: int
     name: str
     category: str
     
