@@ -80,6 +80,14 @@ class Product(Base):
         nullable=False
     ) 
 
+    return_rate: Mapped[float] = mapped_column(
+        nullable=False
+    ) 
+
+    defect_rate: Mapped[float] = mapped_column(
+        nullable=False
+    ) 
+
     avg_storage: Mapped[float] = mapped_column(
         nullable=False
     ) 
@@ -111,4 +119,4 @@ class Product(Base):
         back_populates='product',
         cascade='all, delete-orphan',
         lazy='raise'
-    }
+    )
