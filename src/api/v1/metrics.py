@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends
+from src.schemas.metric import ProductCalculationData
 from src.schemas.metrics import (MetricsList, MetricsView)
 from src.services.metrics import MetricsService
 from src.api.dependencies import get_metrics_service
@@ -14,6 +15,15 @@ async def calculate_metrics(
 ):
 
     return await metrics_service.calculate_metrics(id)
+
+
+@router.post('/', response_model=MetricsView)
+async def calculate_metrics_for_custom_product(
+    product_info: ProductCalculationData,
+    metrics_service: MetricsService = Depends(get_metrics_service)
+):
+
+    return await metrics_service.calculate_metrics_for_custom_product(product_info)
 
 
 @router.get('/', response_model=MetricsView)
