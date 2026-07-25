@@ -67,6 +67,7 @@ class ProductService:
     async def get_by_id(self, id: int) -> ProductView:
 
         product = await self.product_repository.get_by_id(id)
+
         
         if product is None:
             raise ProductNotFoundError(id)

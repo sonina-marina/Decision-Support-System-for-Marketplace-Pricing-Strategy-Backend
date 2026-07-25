@@ -17,7 +17,8 @@ class MetricsService:
 
         self.metrics_repository = metrics_repository
         self.product_repository = product_repository
-    
+   
+
     async def calculate_metrics(self, product_id: int) -> MetricsView:
         
         product = await self.product_repository.get_full_product_by_id(product_id)
@@ -46,13 +47,3 @@ class MetricsService:
             raise MetricsNotFoundError(id) 
 
         return MetricsView.model_validate(metrics)
-
-
-    async def get_all(self) -> MetricsList:
-
-        metrics = await self.metrics_repository.get_all()
-
-        return MetricsList(
-            count=len(metrics),
-            items=[MetricsView.model_validate(metric) for metric in metrics]
-            )
