@@ -1,4 +1,4 @@
-from schemas.metric import ProductCalculationData, MetricsResult
+from src.schemas.metric import ProductCalculationData, MetricsResult
 
 
 class MetricCalculator():

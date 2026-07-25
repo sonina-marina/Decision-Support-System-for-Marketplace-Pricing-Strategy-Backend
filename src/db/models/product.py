@@ -11,12 +11,12 @@ class Product(Base):
         primary_key=True
     )
 
-    shop_id: Mapped[int] = mapped_column(
-        ForeignKey('shops.id'),
+    store_id: Mapped[int] = mapped_column(
+        ForeignKey('stores.id'),
         nullable=False
     )
 
-    shop: Mapped['Shop'] = relationship(
+    store: Mapped['Store'] = relationship(
         lazy='raise'
     )
 

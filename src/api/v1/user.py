@@ -1,6 +1,5 @@
-from collections import UserList
 from fastapi import APIRouter, Depends
-from src.schemas.user import (UserCreate, UserUpdateFullname, UserUpdatePassword, UserView)
+from src.schemas.user import (UserCreate, UserUpdateFullname, UserUpdatePassword, UserView, UserList)
 from src.services.user import UserService
 from src.api.dependencies import get_user_service
 

@@ -43,7 +43,7 @@ class Store(Base):
     )
 
     products: Mapped[list['Product']]= relationship(
-        back_populates='shop',
+        back_populates='store',
         cascade='all, delete-orphan',
         lazy='raise'
     )
