@@ -111,6 +111,37 @@ async def test_get_all(service, repo):
         ),
         Store(
             id=2,
+            user_id=2,
+            name="Temp Store 2",
+            is_deleted=False
+        ),
+    ]
+
+    repo.get_all.return_value = stores
+
+    result = await service.get_all()
+
+    repo.get_all.assert_called_once()
+
+    assert result.count == 2
+    assert result.items[0].name == "Temp Store 1"
+    assert result.items[1].name == "Temp Store 2"
+
+
+# --------- get_store_by_user_id ---------
+
+@pytest.mark.asyncio
+async def test_store_by_user_id(service, repo):
+
+    stores = [
+        Store(
+            id=1,
+            user_id=1,
+            name="Temp Store 1",
+            is_deleted=False
+        ),
+        Store(
+            id=2,
             user_id=1,
             name="Temp Store 2",
             is_deleted=False
