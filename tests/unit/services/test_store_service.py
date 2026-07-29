@@ -1,7 +1,6 @@
 import pytest
 from unittest.mock import AsyncMock
 
-from sqlalchemy.engine import result
 from sqlalchemy.exc import IntegrityError
 
 from src.db.models.store import Store
