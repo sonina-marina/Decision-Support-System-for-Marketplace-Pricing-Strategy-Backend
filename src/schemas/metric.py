@@ -1,7 +1,15 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
+from pydantic.alias_generators import to_camel
+
+class ForCalculationBaseModel(BaseModel):
+    model_config = ConfigDict(
+        from_attributes=True,
+        alias_generator=to_camel,
+        populate_by_name=True
+    )
 
 
-class ProductCalculationData(BaseModel):
+class ProductCalculationData(ForCalculationBaseModel):
     price: float
     cogs: float
     commission: float
@@ -27,7 +35,7 @@ class ProductCalculationData(BaseModel):
     sales: int
 
 
-class MetricsResult(BaseModel):
+class MetricsResult(ForCalculationBaseModel):
     conversion: float
     cac: float
     required_cpa: float
