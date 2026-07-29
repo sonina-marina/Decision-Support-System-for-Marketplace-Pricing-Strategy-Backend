@@ -83,21 +83,21 @@ async def test_get_by_id_success(service, repo, user):
 
     repo.get_by_id.return_value = user
 
-    result = await service.get_by_id(1)
+    result = await service.get_by_id(user.id)
 
-    repo.get_by_id.assert_called_once_with(1)
+    repo.get_by_id.assert_called_once_with(user.id)
 
     assert result.id == 1
     assert result.fullname == "John Doe"
 
 
 @pytest.mark.asyncio
-async def test_get_by_id_not_found(service, repo):
+async def test_get_by_id_not_found(service, repo, user):
 
     repo.get_by_id.return_value = None
 
     with pytest.raises(UserNotFoundError):
-        await service.get_by_id(1)
+        await service.get_by_id(user.id)
 
 
 # ---------- get_all ----------
@@ -139,9 +139,9 @@ async def test_delete_success(service, repo, user):
 
     repo.get_by_id.return_value = user
 
-    await service.delete(1)
+    await service.delete(user.id)
 
-    repo.get_by_id.assert_called_once_with(1)
+    repo.get_by_id.assert_called_once_with(user.id)
     repo.delete.assert_called_once_with(user)
 
 
