@@ -8,4 +8,5 @@ asyncpg>=0.29.0
 alembic>=1.13.0
 psycopg2[binary]
 pytest
+pytest-asyncio
 greenlet
