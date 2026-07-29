@@ -85,6 +85,16 @@ class ProductService:
         )
 
 
+    async def get_store_by_user_id(self, id: int) -> ProductList:
+
+        products = await self.product_repository.get_product_by_shop_id(id)
+
+        return ProductList(
+            count=len(products),
+            items=[ProductView.model_validate(product) for product in products]
+        )
+
+
     async def get_product_with_metric_by_id(self, id: int) -> ProductDetailedView:
 
         product = await self.product_repository.get_by_id(id)

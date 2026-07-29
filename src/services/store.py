@@ -52,6 +52,16 @@ class StoreService:
         )
 
 
+    async def get_store_by_user_id(self, id: int) -> StoreList:
+
+        stores = await self.store_repository.get_store_by_user_id(id)
+
+        return StoreList(
+            count=len(stores),
+            items=[StoreView.model_validate(store) for store in stores]
+        )
+
+
     async def delete(self, id: int) -> None:
         
         store = await self.store_repository.get_by_id(id)
