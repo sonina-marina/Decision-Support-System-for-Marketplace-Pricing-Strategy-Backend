@@ -22,9 +22,11 @@ def prod_repo():
 def metrics_repo():
     return AsyncMock(spec=MetricsRepository)
 
+
 @pytest.fixture
 def service(prod_repo, metrics_repo):
     return ProductService(prod_repo, metrics_repo)
+
 
 @pytest.fixture
 def metric():
@@ -41,8 +43,6 @@ def metric():
         calculated_at=datetime.now(),
     )
 
-
-# --------- create ---------
 
 @pytest.fixture
 def product():
@@ -78,6 +78,8 @@ def product():
         sales=20,
     )
 
+
+# --------- create ---------
 
 @pytest.mark.asyncio
 async def test_create_success(service, prod_repo, product):
