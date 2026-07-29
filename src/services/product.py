@@ -27,7 +27,7 @@ class ProductService:
             raise ProductAlreadyExistsError(schema.item_number)
 
         product = Product(
-            shop_id=schema.shop_id,
+            store_id=schema.store_id,
             item_number=schema.item_number,
             name=schema.name,
             category=schema.category,
@@ -87,7 +87,7 @@ class ProductService:
 
     async def get_store_by_user_id(self, id: int) -> ProductList:
 
-        products = await self.product_repository.get_product_by_shop_id(id)
+        products = await self.product_repository.get_product_by_store_id(id)
 
         return ProductList(
             count=len(products),
@@ -104,15 +104,16 @@ class ProductService:
 
         metrics = await self.metrics_repository.get_metrics_by_product_id(product.id)
 
-        product_data = product.__dict__.copy()
-        product_data.pop('_sa_instance_state', None)
+        metrics_views = [
+            MetricsView.model_validate(metric)
+            for metric in metrics
+        ]
 
-        metrics_views = [MetricsView.model_validate(m, from_attributes=True) for m in metrics]
+        product_view = ProductDetailedView.model_validate(product)
 
-        return ProductDetailedView(
-            **product_data,
-            metrics=metrics_views
-        )
+        product_view.metrics = metrics_views
+
+        return product_view
 
 
     async def delete(self, id: int) -> None:

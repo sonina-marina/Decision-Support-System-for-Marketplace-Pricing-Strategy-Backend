@@ -18,14 +18,14 @@ class ProductRepository(
         super().__init__(Product, session)
 
 
-    async def get_product_by_shop_id(
+    async def get_product_by_store_id(
         self,
-        shop_id: int
+        store_id: int
     ) -> list[Product]:
         
         stmt = (
             select(Product)
-            .where(Product.shop_id == shop_id)
+            .where(Product.store_id == store_id)
         )
 
         result = await self.session.execute(stmt)

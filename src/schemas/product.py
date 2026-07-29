@@ -13,7 +13,7 @@ class ProductBaseModel(BaseModel):
 
 
 class ProductCreate(ProductBaseModel):
-    shop_id: int
+    store_id: int
 
     item_number: int
     name: str
@@ -46,7 +46,7 @@ class ProductCreate(ProductBaseModel):
 
 class ProductView(ProductBaseModel):
     id: int
-    #shop_id: int
+    #store_id: int
     item_number: int
     name: str
     category: str
@@ -55,7 +55,7 @@ class ProductView(ProductBaseModel):
 
 class ProductDetailedView(ProductBaseModel):
     id: int
-    shop_id: int
+    store_id: int
 
     item_number: int
     name: str
