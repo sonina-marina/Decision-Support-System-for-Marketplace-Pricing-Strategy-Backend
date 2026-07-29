@@ -31,11 +31,9 @@ class MetricsService:
 
         metrics = Metrics(**result.model_dump())
 
-        await self.metrics_repository.save(metrics)
+        metrics = await self.metrics_repository.save(metrics)
 
-        metrics_view = MetricsView.model_validate(result)
-
-        return metrics_view
+        return MetricsView.model_validate(metrics)
 
 
     async def calculate_metrics_for_custom_product(
@@ -47,11 +45,9 @@ class MetricsService:
 
         metrics = Metrics(**result.model_dump())
 
-        await self.metrics_repository.save(metrics)
+        metrics = await self.metrics_repository.save(metrics)
 
-        metrics_view = MetricsView.model_validate(result)
-
-        return metrics_view
+        return MetricsView.model_validate(metrics)
 
 
 
