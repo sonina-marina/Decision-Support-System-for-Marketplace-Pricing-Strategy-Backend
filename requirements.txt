@@ -12,3 +12,4 @@ pytest-asyncio
 greenlet
 PyJWT
 passlib[bcrypt]
+httpx2
