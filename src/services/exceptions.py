@@ -39,3 +39,13 @@ class MetricsNotFoundError(Exception):
 class InvalidCredentialsError(Exception):
     def __init__(self):
         pass
+
+
+class UnauthorizedError(Exception):
+    def __init__(self):
+        pass
+
+
+class ForbiddenError(Exception):
+    def __init__(self):
+        pass
