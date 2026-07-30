@@ -1,6 +1,8 @@
 from pydantic import BaseModel, ConfigDict, EmailStr
 from pydantic.alias_generators import to_camel
 
+from src.enums import UserRole
+
 
 class UserBaseModel(BaseModel):
     model_config = ConfigDict(
@@ -14,12 +16,14 @@ class UserCreate(UserBaseModel):
     email: EmailStr
     fullname: str
     password: str
+    role: UserRole
 
 
 class UserView(UserBaseModel):
     id: int
     email: EmailStr
     fullname: str
+    role: UserRole
 
 
 class UserList(UserBaseModel):

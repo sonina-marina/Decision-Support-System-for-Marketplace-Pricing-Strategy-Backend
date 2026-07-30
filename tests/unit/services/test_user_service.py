@@ -1,6 +1,7 @@
 import pytest
 from unittest.mock import AsyncMock
 
+from src.enums import UserRole
 from src.services.user import UserService
 from src.db.repositories import UserRepository
 from src.db.models.user import User
@@ -30,6 +31,7 @@ def user():
         fullname="John Doe",
         email="john@mail.com",
         hash_password="123",
+        role='SELLER',
     )
 
 
@@ -42,6 +44,7 @@ async def test_create_success(service, repo, user):
         fullname="John Doe",
         email="john@mail.com",
         password="password",
+        role=UserRole.SELLER,
     )
 
     repo.get_user_by_email.return_value = None
@@ -66,6 +69,7 @@ async def test_create_user_already_exists(service, repo, user):
         fullname="John Doe",
         email="john@mail.com",
         password="password",
+        role=UserRole.SELLER,
     )
 
     repo.get_user_by_email.return_value = user
@@ -111,12 +115,14 @@ async def test_get_all(service, repo):
             fullname="Ivan",
             email="ivan@test.com",
             hash_password="123",
+            role=UserRole.SELLER,
         ),
         User(
             id=2,
             fullname="Anna",
             email="anna@test.com",
             hash_password="456",
+            role=UserRole.SELLER,
         ),
     ]
 

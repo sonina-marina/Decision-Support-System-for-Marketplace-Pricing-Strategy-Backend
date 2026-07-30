@@ -4,6 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.db.dependencies import get_session
 from src.db.repositories import (UserRepository, StoreRepository,
                                  ProductRepository, MetricsRepository)
+from src.services.auth import AuthService
 from src.services.metrics import MetricsService
 from src.services.product import ProductService
 from src.services.store import StoreService
@@ -66,3 +67,10 @@ async def get_metrics_service(
 ) -> MetricsService:
 
     return MetricsService(metrics_repository, product_repository)
+
+
+async def get_auth_service(
+    user_repository: UserRepository = Depends(get_user_repository)
+) -> AuthService:
+
+    return AuthService(user_repository)

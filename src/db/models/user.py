@@ -1,9 +1,10 @@
 from datetime import datetime
 
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, func
+from sqlalchemy import String, func, Enum
 
 from src.db.models.base import Base
+from src.enums import UserRole
 
 
 class User(Base):
@@ -25,6 +26,11 @@ class User(Base):
 
     hash_password: Mapped[str] = mapped_column(
         String(60),
+        nullable=False
+    )
+
+    role: Mapped[UserRole] = mapped_column(
+        Enum(UserRole),
         nullable=False
     )
 

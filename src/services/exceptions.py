@@ -34,3 +34,8 @@ class ProductAlreadyExistsError(Exception):
 class MetricsNotFoundError(Exception):
     def __init__(self, metrics_id: int):
         self.metrics_id = metrics_id
+
+
+class InvalidCredentialsError(Exception):
+    def __init__(self):
+        pass
