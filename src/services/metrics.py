@@ -1,7 +1,7 @@
 from src.db.repositories.metrics import MetricsRepository
 from src.db.repositories.product import ProductRepository
 from src.schemas.metric import ProductCalculationData
-from src.schemas.metrics import (MetricsView)
+from src.schemas.metrics import (MetricsList, MetricsView)
 from src.services.exceptions import MetricsNotFoundError, ProductNotFoundError
 from src.utils.metric_calculator import MetricCalculator
 from src.db.models.metrics import Metrics
@@ -50,7 +50,6 @@ class MetricsService:
         return MetricsView.model_validate(metrics)
 
 
-
     async def get_by_id(self, id: int) -> MetricsView:
 
         metrics = await self.metrics_repository.get_by_id(id)
@@ -59,3 +58,13 @@ class MetricsService:
             raise MetricsNotFoundError(id) 
 
         return MetricsView.model_validate(metrics)
+
+
+    async def get_metrics_by_product_id(self, id: int) -> MetricsList:
+
+        metrics = await self.metrics_repository.get_metrics_by_product_id(id)
+
+        return MetricsList(
+            count=len(metrics),
+            items=[MetricsView.model_validate(metric) for metric in metrics]
+        )
