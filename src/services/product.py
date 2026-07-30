@@ -85,7 +85,7 @@ class ProductService:
         )
 
 
-    async def get_store_by_user_id(self, id: int) -> ProductList:
+    async def get_product_by_store_id(self, id: int) -> ProductList:
 
         products = await self.product_repository.get_product_by_store_id(id)
 
