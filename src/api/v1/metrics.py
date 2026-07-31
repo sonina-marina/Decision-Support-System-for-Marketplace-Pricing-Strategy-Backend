@@ -46,8 +46,8 @@ async def get_by_id(
     return await metrics_service.get_by_id(id)
 
 
-@router.get('/all', response_model=MetricsList)
-async def get_product_by_store_id(
+@router.get('/by_product', response_model=MetricsList)
+async def get_metrics_by_product_id(
     id: int,
     metrics_service: MetricsService = Depends(get_metrics_service),
     user=Depends(
