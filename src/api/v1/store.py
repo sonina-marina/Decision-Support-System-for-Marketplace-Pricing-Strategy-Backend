@@ -44,7 +44,7 @@ async def get_all(
     return await store_service.get_all()
 
 
-@router.get('/all', response_model=StoreList)
+@router.get('/by_user', response_model=StoreList)
 async def get_store_by_user_id(
     id: int,
     store_service: StoreService = Depends(get_store_service),

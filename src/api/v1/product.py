@@ -44,7 +44,7 @@ async def get_all(
     return await product_service.get_all()
 
 
-@router.get('/by_user', response_model=ProductList)
+@router.get('/by_store', response_model=ProductList)
 async def get_product_by_store_id(
     id: int,
     product_service: ProductService = Depends(get_product_service),
