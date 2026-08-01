@@ -7,7 +7,7 @@ from src.services.metrics import MetricsService
 from src.api.dependencies import get_metrics_service
 
 
-router = APIRouter(prefix='/metricss')
+router = APIRouter(prefix='/metrics')
 
 
 @router.post('/', response_model=MetricsView)
@@ -22,7 +22,7 @@ async def calculate_metrics(
     return await metrics_service.calculate_metrics(id)
 
 
-@router.post('/', response_model=MetricsView)
+@router.post('/custom', response_model=MetricsView)
 async def calculate_metrics_for_custom_product(
     product_info: ProductCalculationData,
     metrics_service: MetricsService = Depends(get_metrics_service),
