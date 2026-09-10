@@ -1,6 +1,6 @@
 # Decision-Support System for Marketplace Pricing Strategy - Backend
 
-You can read full information about this project (here)[https://github.com/sonina-marina/Decision-Support-System-for-Marketplace-Pricing-Strategy-Backend.wiki.git]
+You can read full information about this project [here](https://github.com/sonina-marina/Decision-Support-System-for-Marketplace-Pricing-Strategy-Backend.wiki.git)
 
 # Backend
 
