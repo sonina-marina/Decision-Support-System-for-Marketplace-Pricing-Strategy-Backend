@@ -9,9 +9,9 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - dss_database_volume:/var/lib/postgresql
+      - dss_database_volume:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U admin -d erp-db"]
+      test: ["CMD-SHELL", "pg_isready -U admin -d dss_db"]
       interval: 5s
       timeout: 10s
       retries: 5
