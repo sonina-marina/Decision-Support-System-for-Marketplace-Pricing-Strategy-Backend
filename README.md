@@ -1,6 +1,6 @@
 # Decision-Support System for Marketplace Pricing Strategy - Backend
 
-You can read full information about this project [here](https://github.com/sonina-marina/Decision-Support-System-for-Marketplace-Pricing-Strategy-Backend.wiki.git)
+You can read full information about this project [here](https://github.com/sonina-marina/Decision-Support-System-for-Marketplace-Pricing-Strategy-Backend/wiki)
 
 # Backend
 
@@ -84,3 +84,5 @@ alembic upgrade head
 
 uvicorn src.main:app --reload
 ```
+
+The backend part runs at backend at http://localhost:8000.
