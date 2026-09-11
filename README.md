@@ -75,6 +75,7 @@ Unit tests (`tests/unit`) mock repositories and test service logic in isolation.
 ## Setup Guide
 
 ```bash
+git clone https://github.com/sonina-marina/Decision-Support-System-for-Marketplace-Pricing-Strategy-Backend
 cd dss_backend
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
