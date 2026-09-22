@@ -2,7 +2,7 @@
 
 You can read full information about this project [here](https://github.com/sonina-marina/Decision-Support-System-for-Marketplace-Pricing-Strategy-Backend/wiki)
 
-▶️ [Watch Project Overview on YouTube](https://youtu.be)
+▶️ [Watch Project Overview on YouTube](https://youtu.be/Itb55IXwvz0?si=TypxJau-3-aq8Yh1)
 
 # Backend
 
