@@ -2,6 +2,8 @@
 
 You can read full information about this project [here](https://github.com/sonina-marina/Decision-Support-System-for-Marketplace-Pricing-Strategy-Backend/wiki)
 
+▶️ [![Watch Project Overview on YouTube](https://youtube.com)](https://youtu.be)
+
 # Backend
 
 FastAPI application with async SQLAlchemy, PostgreSQL, and Alembic migrations. No architecture diagram yet — this page describes the layering in words until one is drawn.
